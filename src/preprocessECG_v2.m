@@ -1,35 +1,35 @@
-function varargout = preprocessECG(varargin)
-% PREPROCESSECG MATLAB code for preprocessECG.fig
-%      PREPROCESSECG, by itself, creates a new PREPROCESSECG or raises the existing
+function varargout = preprocessECG_v2(varargin)
+% PREPROCESSECG_V2 MATLAB code for preprocessECG_v2.fig
+%      PREPROCESSECG_V2, by itself, creates a new PREPROCESSECG_V2 or raises the existing
 %      singleton*.
 %
-%      H = PREPROCESSECG returns the handle to a new PREPROCESSECG or the handle to
+%      H = PREPROCESSECG_V2 returns the handle to a new PREPROCESSECG_V2 or the handle to
 %      the existing singleton*.
 %
-%      PREPROCESSECG('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in PREPROCESSECG.M with the given input arguments.
+%      PREPROCESSECG_V2('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in PREPROCESSECG_V2.M with the given input arguments.
 %
-%      PREPROCESSECG('Property','Value',...) creates a new PREPROCESSECG or raises the
+%      PREPROCESSECG_V2('Property','Value',...) creates a new PREPROCESSECG_V2 or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before preprocessECG_OpeningFcn gets called.  An
+%      applied to the GUI before preprocessECG_v2_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to preprocessECG_OpeningFcn via varargin.
+%      stop.  All inputs are passed to preprocessECG_v2_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help preprocessECG
+% Edit the above text to modify the response to help preprocessECG_v2
 
-% Last Modified by GUIDE v2.5 01-Sep-2023 13:44:29
+% Last Modified by GUIDE v2.5 10-Oct-2023 10:59:46
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @preprocessECG_OpeningFcn, ...
-                   'gui_OutputFcn',  @preprocessECG_OutputFcn, ...
+                   'gui_OpeningFcn', @preprocessECG_v2_OpeningFcn, ...
+                   'gui_OutputFcn',  @preprocessECG_v2_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,26 +44,26 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before preprocessECG is made visible.
-function preprocessECG_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before preprocessECG_v2 is made visible.
+function preprocessECG_v2_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to preprocessECG (see VARARGIN)
+% varargin   command line arguments to preprocessECG_v2 (see VARARGIN)
 
-% Choose default command line output for preprocessECG
+% Choose default command line output for preprocessECG_v2
 handles.output = hObject;
 handles.Hd=0;
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes preprocessECG wait for user response (see UIRESUME)
+% UIWAIT makes preprocessECG_v2 wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = preprocessECG_OutputFcn(hObject, eventdata, handles) 
+function varargout = preprocessECG_v2_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -145,7 +145,7 @@ axes(handles.axes1)
  set(handles.edit_mean,'String',fmmu)
  set(handles.edit_std,'String',fstd)
 
- set(handles.messages,'String','Signal Cropped and Updated.')
+ set(handles.messages,'String','Signal interval selected.')
 
  
  handles.ecg=ecg;
@@ -269,7 +269,18 @@ drawnow;
 
 fname=fullfile(path,file);
 handles.fname=fname;
- data=load(fname);
+% ff=fopen(fname,'r');
+% firstline=fgetl(ff); 
+% 
+% while ~isnumeric(firstline)
+% firstline=fgetl(ff); 
+% end
+% ff=fopen(fname,'w');
+% fprintf(ff,'%s\n');
+% fclose(ff);   
+
+data=load(fname);
+ 
  [s1,s2]=size(data);
   if s1<s2
       data=data';
