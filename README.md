@@ -13,3 +13,7 @@ and requires Signal Processing Toolbox.
 The software does not need any installation. It is sufficient to add the folders with subfolders to the Matlab path
 
 #### Folder organization and quick start guide is included in PrepAnnECG Documentation file in documentation folder. 
+
+### Please refer the article for more details
+
+Nalan Ozkurt, PrepAnnECG: A user friendly MATLAB ECG preprocessing and annotation GUI for health professionals, SoftwareX, Vol. 24, 2023,101589, ISSN 2352-7110, https://doi.org/10.1016/j.softx.2023.101589.
